@@ -22,6 +22,9 @@ class Product extends Model
         'name', 'external_id', 'price', 'latest_price_checked_at', 'status',
     ];
 
+    /**
+     * @var string[]
+     */
     protected $casts = [
         'price' => 'float',
         'status' => ProductStatuses::class,
@@ -35,7 +38,12 @@ class Product extends Model
         return $this->belongsToMany(Subscriber::class);
     }
 
-    public function scopeGetActivelyTracked(Builder $query, int $checkInterval)
+    /**
+     * @param Builder $query
+     * @param int $checkInterval
+     * @return Builder
+     */
+    public function scopeGetActivelyTracked(Builder $query, int $checkInterval): Builder
     {
         return $query->where('status', ProductStatuses::Active->value)
             ->where('latest_price_checked_at', '<=', Carbon::now()->subMinutes($checkInterval))

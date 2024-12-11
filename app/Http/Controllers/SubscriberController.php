@@ -10,6 +10,9 @@ use Illuminate\Http\JsonResponse;
 
 class SubscriberController extends Controller
 {
+    /**
+     * @param SubscriberService $subscriberService
+     */
     public function __construct(
         private readonly SubscriberService $subscriberService,
     ) {
@@ -17,11 +20,11 @@ class SubscriberController extends Controller
     }
 
     /**
-     * @deprecated Verify subscriber email
      * @param string $token
      * @return JsonResponse
+     * @deprecated Verify subscriber email
      */
-    public function verifyEmail(string $token): \Illuminate\Http\JsonResponse
+    public function verifyEmail(string $token): JsonResponse
     {
         $this->subscriberService->verifyEmail($token);
 
@@ -29,9 +32,9 @@ class SubscriberController extends Controller
     }
 
     /**
-     * @deprecated Resend verification email
      * @param ResendEmailVerificationRequest $request
      * @return JsonResponse
+     * @deprecated Resend verification email
      */
     public function resendEmailVerification(ResendEmailVerificationRequest $request): JsonResponse
     {

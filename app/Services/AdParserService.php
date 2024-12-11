@@ -41,7 +41,8 @@ class AdParserService implements ParserService
      * @param int $statusCode
      * @return array[]
      */
-    private function handleErrors(string $reason, int $statusCode): array {
+    private function handleErrors(string $reason, int $statusCode): array
+    {
         return [
             'error' => [
                 'reason' => $reason,
@@ -67,7 +68,7 @@ class AdParserService implements ParserService
      */
     public function getExternalIdFromProductHtmlPage(string $response): int
     {
-        return (int) Str::match('/ad-id=(\d+)/', $response);
+        return (int)Str::match('/ad-id=(\d+)/', $response);
     }
 
     /**
@@ -111,7 +112,7 @@ class AdParserService implements ParserService
             return $item['key'] === 'price' && $item['type'] === 'price';
         });
 
-        return isset($parameter['value']['value']) ? (float) $parameter['value']['value'] : 0;
+        return isset($parameter['value']['value']) ? (float)$parameter['value']['value'] : 0;
     }
 
     /**
@@ -122,5 +123,4 @@ class AdParserService implements ParserService
     {
         return Arr::get($rawData, 'title');
     }
-
 }

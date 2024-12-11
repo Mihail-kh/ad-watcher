@@ -56,11 +56,17 @@ class ProductService
                     'external_id' => $productExternalId,
                     'latest_price_checked_at' => now(),
                 ]);
+
             }
+            $product->load('subscribers');
 
             $subscriber = Subscriber::firstOrCreate([
                 'email' => $data['email'],
             ]);
+
+            if ($product->subscribers->contains($subscriber->id)) {
+                return response()->json(['error' => 'You are already subscribed to updates for this product.'], 422);
+            }
 
             $product->subscribers()->syncWithoutDetaching($subscriber);
 

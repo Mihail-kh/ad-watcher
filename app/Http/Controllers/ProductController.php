@@ -23,9 +23,9 @@ class ProductController extends Controller
     }
 
     /**
-     * @deprecated Get list of products
      * @return AnonymousResourceCollection
      *
+     * @deprecated Get list of products
      */
     public function index(): AnonymousResourceCollection
     {
@@ -35,9 +35,9 @@ class ProductController extends Controller
     }
 
     /**
-     * @deprecated Subscribe to the product
      * @param SubscribeToProductRequest $request
      * @return mixed
+     * @deprecated Subscribe to the product
      */
     public function subscribe(SubscribeToProductRequest $request): mixed
     {
@@ -46,10 +46,10 @@ class ProductController extends Controller
 
     /**
      *
-     * @deprecated Update product
      * @param UpdateProductRequest $request
      * @param Product $product
      * @return mixed*
+     * @deprecated Update product
      */
     public function update(UpdateProductRequest $request, Product $product): mixed
     {

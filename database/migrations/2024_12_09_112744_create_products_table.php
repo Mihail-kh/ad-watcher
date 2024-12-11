@@ -1,0 +1,33 @@
+<?php
+
+use App\Enums\ProductStatuses;
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::create('products', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->bigInteger('external_id')->unique();
+            $table->decimal('price')->unsigned();
+            $table->dateTime('latest_price_checked_at')->nullable();
+            $table->enum('status', ProductStatuses::toArray())->default(ProductStatuses::Active->value);
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists('products');
+    }
+};

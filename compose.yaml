@@ -1,0 +1,53 @@
+services:
+  app:
+    build:
+      context: ./
+      dockerfile: docker/Dockerfile
+    environment:
+      PROCESS: laravel-app
+    container_name: project_app
+    restart: unless-stopped
+    ports:
+      - 9000:9000
+    volumes:
+      - ./:/var/www
+    networks:
+      - project-webserver-app
+      - project-db-network
+
+  webserver:
+    image: nginx
+    container_name: webserver
+    restart: unless-stopped
+    depends_on:
+      - app
+    volumes:
+      - ./:/var/www
+      - ./docker/nginx/conf.d/:/etc/nginx/conf.d
+    ports:
+      - 80:80
+    networks:
+      - project-webserver-app
+
+  db:
+    image: postgres
+    restart: unless-stopped
+    container_name: project_db
+    depends_on:
+      - app
+    environment:
+      POSTGRES_DB: ${DB_DATABASE}
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - 5432:5432
+    networks:
+      - project-db-network
+
+networks:
+  project-webserver-app:
+    driver: bridge
+    name: project-webserver-app
+  project-db-network:
+    driver: bridge
+    name: project-db-network

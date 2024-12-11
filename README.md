@@ -1,6 +1,6 @@
 # Project Title
 
-Приложения для1 парсинга изменения стоимости товара на сайте объявлений
+Application for parsing from the site of ads
 
 ## Table of Contents
 

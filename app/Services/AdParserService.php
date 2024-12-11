@@ -107,11 +107,11 @@ class AdParserService implements ParserService
      */
     public function extractPriceFromResponse(array $rawData): ?float
     {
-        $parameterItem = Arr::first($rawData['params'], function ($item) {
+        $parameter = Arr::first($rawData['params'], function ($item) {
             return $item['key'] === 'price' && $item['type'] === 'price';
         });
 
-        return isset($parameterItem['value']['value']) ? (float) $parameterItem['value']['value'] : 0;
+        return isset($parameter['value']['value']) ? (float) $parameter['value']['value'] : 0;
     }
 
     /**

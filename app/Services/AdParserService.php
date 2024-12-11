@@ -111,9 +111,7 @@ class AdParserService implements ParserService
             return $item['key'] === 'price' && $item['type'] === 'price';
         });
 
-        $price = Arr::get($parameterItem, 'value.value');
-
-        return !is_null($price) ? (float) $price : null;
+        return isset($parameterItem['value']['value']) ? (float) $parameterItem['value']['value'] : 0;
     }
 
     /**

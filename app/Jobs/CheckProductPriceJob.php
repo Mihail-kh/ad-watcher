@@ -31,7 +31,6 @@ class CheckProductPriceJob implements ShouldQueue
      */
     public function handle(): void
     {
-        // actualPrice has type 'string'
         $actualPrice = $this->parserService->extractPriceFromResponse(
             $this->parserService->sendRequestToApi($this->product->external_id)
         );

@@ -1,6 +1,6 @@
 # Project Title
 
-Application for parsing from the site of ads
+Application for parsing data from the site of ads
 
 ## Table of Contents
 

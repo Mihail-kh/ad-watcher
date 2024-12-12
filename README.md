@@ -1,6 +1,6 @@
 # Ad watcher
 
-Application for parsing data from the site of ads
+Application for parsing data from the website of ads
 
 ## Table of Contents
 
@@ -51,7 +51,7 @@ Application for parsing data from the site of ads
     ```bash
     docker compose up -d
     ```
-2. When you first start the application, run the command
+2. Run this command first time you launch the application
     ```bash
     docker compose exec app php artisan queue:restart
     ```

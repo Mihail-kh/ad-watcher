@@ -42,7 +42,7 @@ class ProductService
             $product = Product::where('external_id', $productExternalId)->first();
 
             if (!$product) {
-                $responseFromApi = $this->parserService->sendRequestToApi($productExternalId);
+                $responseFromApi = $this->parserService->getProductFromExternalApi($productExternalId);
 
                 if (is_array($responseFromApi) && isset($responseFromApi['error'])) {
                     return response()->json(['error' => $responseFromApi['error']['reason']], $responseFromApi['error']['status']);

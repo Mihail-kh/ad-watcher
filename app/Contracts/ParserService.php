@@ -8,7 +8,7 @@ interface ParserService
 
     public function getExternalIdFromProductHtmlPage(string $response): int;
 
-    public function sendRequestToApi(int $externalId);
+    public function getProductFromExternalApi(int $externalId);
 
     public function getProcessedProductDataFromApi(array $response): array;
 

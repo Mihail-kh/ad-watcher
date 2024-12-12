@@ -75,7 +75,7 @@ class AdParserService implements ParserService
      * @param int $externalId
      * @return mixed|void
      */
-    public function sendRequestToApi(int $externalId)
+    public function getProductFromExternalApi(int $externalId)
     {
         try {
             $response = Http::get(self::BASE_URL . 'offers/' . $externalId);

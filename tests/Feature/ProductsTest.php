@@ -40,7 +40,7 @@ test('processes products with active status and verified subscribers', function 
         'status' => ProductStatuses::Active->value,
         'latest_price_checked_at' => Carbon::now()->subMinutes(10),
     ]);
-    $firstProduct->subscribers()->syncWithoutDetaching($verifiedUser);
+    $firstProduct->subscribers()->syncWithoutDetaching($unverifiedUser);
 
     $secondProduct = Product::factory()->create([
         'status' => ProductStatuses::Active->value,
@@ -61,7 +61,6 @@ test('processes products with active status and verified subscribers', function 
     $command = new CheckProductPrice();
     $command->handle();
 
-    // Проверяем обновление
     $this->assertEquals(Carbon::now(), $secondProduct->refresh()->latest_price_checked_at);
 
     Queue::assertPushed(CheckProductPriceJob::class, function ($job) use ($secondProduct) {

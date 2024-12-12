@@ -32,7 +32,7 @@ class CheckProductPriceJob implements ShouldQueue
     public function handle(): void
     {
         $actualPrice = $this->parserService->extractPriceFromResponse(
-            $this->parserService->sendRequestToApi($this->product->external_id)
+            $this->parserService->getProductFromExternalApi($this->product->external_id)
         );
 
         if ($actualPrice !== $this->product->price) {

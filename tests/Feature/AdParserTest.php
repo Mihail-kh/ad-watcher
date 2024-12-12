@@ -18,9 +18,9 @@ test('getProductHtmlPage returns 404 for non existent ad', function () {
     $this->assertSame('Сторінку не знайдено', $response['error']['reason']);
 });
 
-test('sendRequestToApi returns 404 for wrong external ad id', function () {
+test('getProductFromExternalApi returns 404 for wrong external ad id', function () {
     $externalId = 11111;
-    $response = $this->addParserService->sendRequestToApi($externalId);
+    $response = $this->addParserService->getProductFromExternalApi($externalId);
 
     $this->assertIsArray($response);
     $this->assertArrayHasKey('error', $response);
